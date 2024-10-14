@@ -1,0 +1,182 @@
+Create S, P, J, SPJ tables as specified below and insert a few rows in each table:-   
+SUPPLIER                
+1.(S#, Sname, Status, City)    
+
+--> CREATE TABLE S (
+    ->     S# CHAR(4),
+    ->     Sname CHAR(4),
+    ->     Status CHAR(4),
+    ->     City CHAR(4));
+
+2.PARTS                   
+(P#, Pname, Color, Weight, City)    
+
+--> CREATE TABLE PARTS (
+    ->     `P#` CHAR(4),
+    ->     Pname CHAR(20),
+    ->     Color CHAR(10),
+    ->     Weight DECIMAL(5,2),
+    ->     City CHAR(15)
+    -> );
+
+3.PROJECTS                
+(J#, Jname, City) 
+
+-->CREATE TABLE PROJECTS (
+    ->     `J#` CHAR(4),
+    ->     Jname CHAR(20),
+    ->     City CHAR(15)
+    -> );
+
+4.SUPPLIER-PARTS-PROJECT     
+(S#, P#, J#, Qty)  
+
+-->CREATE TABLE SPP (
+    ->     `S#` CHAR(4),
+    ->     `P#` CHAR(4),
+    ->     `J#` CHAR(4),
+    ->     Qty INT
+    -> );
+
+5. Display all the data from the S table. 
+--> select * from supplier;
++------+-------+--------+------+
+| S#   | Sname | Status | City |
++------+-------+--------+------+
+| NULL | NULL  | 10     | NULL |
+| NULL | NULL  | 20     | NULL |
+| NULL | NULL  | 30     | NULL |
++------+-------+--------+------+
+3 rows in set (0.00 sec)
+
+6. Display only the S# and SNAME fields from the S table.  
+--> 
+ 
+mysql> select * from supplier;
++------+-------+--------+------+
+| S#   | Sname | Status | City |
++------+-------+--------+------+
+| S1   | Nik   | 10     | Mum  |
+| S2   | Shiv  | 20     | Del  |
+| S3   | Mayu  | 30     | Kol  |
++------+-------+--------+------+
+3 rows in set (0.00 sec)
+
+7. Display the PNAME and COLOR from the P table for the CITY=”London”.    
+-->
+
+mysql> select pname,color from parts;
++--------+-------+
+| pname  | color |
++--------+-------+
+| Part A | Red   |
+| Part B | Blue  |
+| Part C | Green |
++--------+-------+
+3 rows in set (0.00 sec)
+   
+8. Display all the Suppliers from Mumbai.    
+
+-->mysql> select * from supplier
+    -> where city in('mum');
++------+-------+--------+------+
+| S#   | Sname | Status | City |
++------+-------+--------+------+
+| S1   | Nik   | 10     | Mum  |
++------+-------+--------+------+
+1 row in set (0.00 sec)
+
+9. Display all the Suppliers from Mum or Del.   
+
+-->select * from supplier
+    -> where city = 'Mum' or city = 'Del';
++------+-------+--------+------+
+| S#   | Sname | Status | City |
++------+-------+--------+------+
+| S1   | Nik   | 10     | Mum  |
+| S2   | Shiv  | 20     | Del  |
++------+-------+--------+------+
+2 rows in set (0.00 sec)
+
+10. Display all the Projects in Athens.  
+
+-->mysql> select * from projects
+    -> where city like 'Athens';
++------+-----------+--------+
+| J#   | Jname     | City   |
++------+-----------+--------+
+| J1   | Project A | Athens |
++------+-----------+--------+
+1 row in set (0.00 sec)
+
+11. Display all the Partnames with the weight between 12 and 14 (inclusive of both). 
+
+-->select * from parts
+    -> where Weight between 12 and 14;
++------+--------+-------+--------+-------+
+| P#   | Pname  | Color | Weight | City  |
++------+--------+-------+--------+-------+
+| P3   | Part C | Green |  12.30 | CityZ |
++------+--------+-------+--------+-------+
+1 row in set (0.00 sec)
+
+12. Display all the Suppliers with a Status greater than or equal to 20. 
+
+-->select * from supplier
+    -> where Status >= 20;
++------+-------+--------+------+
+| S#   | Sname | Status | City |
++------+-------+--------+------+
+| S2   | Shiv  | 20     | Del  |
+| S3   | Mayu  | 30     | Kol  |
++------+-------+--------+------+
+2 rows in set (0.00 sec)
+
+13. Display all the Suppliers except the Suppliers from London.   
+
+-->select * from supplier
+    -> where city not like 'Athens';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S2   | Shiv  | 20     | Paris  |
+| S3   | Mayu  | 30     | London |
++------+-------+--------+--------+
+2 rows in set (0.00 sec)
+
+
+14. Display only the Cities from where the Suppliers come from.   
+
+-->select city from supplier;
++--------+
+| city   |
++--------+
+| Athens |
+| Paris  |
+| London |
++--------+
+3 rows in set (0.00 sec)
+
+15. Assuming that the Part Weight is in GRAMS, display the same in 
+MILLIGRAMS and KILOGRAMS.    
+
+-->select weight*1000 'Miligram' from parts;
++----------+
+| Miligram |
++----------+
+| 10500.00 |
+| 15750.00 |
+| 12300.00 |
++----------+
+3 rows in set (0.00 sec)
+
+
+-->select weight/1000 'Kilograms' from parts;
++-----------+
+| Kilograms |
++-----------+
+|  0.010500 |
+|  0.015750 |
+|  0.012300 |
++-----------+
+3 rows in set (0.00 sec)

@@ -1,0 +1,89 @@
+1. Display the Supplier table in the descending order of CITY.   
+
+-->select * from supplier
+    -> order by city desc;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S2   | Shiv  | 20     | Paris  |
+| S3   | Mayu  | 30     | London |
+| S1   | Nik   | 10     | Athens |
++------+-------+--------+--------+
+3 rows in set (0.00 sec)
+
+2. Display the Part Table in the ascending order of CITY and within the city in 
+the ascending order of Part names.
+
+-->select * from parts
+    -> order by city asc, Pname asc;
++------+--------+-------+--------+-------+
+| P#   | Pname  | Color | Weight | City  |
++------+--------+-------+--------+-------+
+| P1   | Part A | Red   |  10.50 | CityX |
+| P2   | Part B | Blue  |  15.75 | CityY |
+| P3   | Part C | Green |  12.30 | CityZ |
++------+--------+-------+--------+-------+
+3 rows in set (0.00 sec)
+
+3. Display all the Suppliers with a status between 10 and 20.
+
+-->select * from supplier
+    -> where status between 10 and 20;
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S1   | Nik   | 10     | Athens |
+| S2   | Shiv  | 20     | Paris  |
++------+-------+--------+--------+
+2 rows in set (0.00 sec)
+
+4. Display all the Parts and their Weight, which are not in the range of 10 and 15. 
+
+-->select * from parts
+    -> where weight not between 10 and 15;
++------+--------+-------+--------+-------+
+| P#   | Pname  | Color | Weight | City  |
++------+--------+-------+--------+-------+
+| P2   | Part B | Blue  |  15.75 | CityY |
++------+--------+-------+--------+-------+
+1 row in set (0.00 sec)
+
+
+5. Display all the Part names starting with the letter ‘S’.   
+
+-->select * from parts
+    -> where Pname like 'P%';
++------+--------+-------+--------+-------+
+| P#   | Pname  | Color | Weight | City  |
++------+--------+-------+--------+-------+
+| P1   | Part A | Red   |  10.50 | CityX |
+| P2   | Part B | Blue  |  15.75 | CityY |
+| P3   | Part C | Green |  12.30 | CityZ |
++------+--------+-------+--------+-------+
+3 rows in set (0.00 sec)
+
+6. Display all the Suppliers, belonging to cities starting with the letter ‘L’.   
+
+-->select * from supplier
+    -> where city like 'L%';
++------+-------+--------+--------+
+| S#   | Sname | Status | City   |
++------+-------+--------+--------+
+| S3   | Mayu  | 30     | London |
++------+-------+--------+--------+
+1 row in set (0.00 sec)
+
+7. Display all the Projects, with the third letter in JNAME as ‘n’.  
+
+-->select * from projects
+    -> where jname like '_r%';
++------+-----------+--------+
+| J#   | Jname     | City   |
++------+-----------+--------+
+| J1   | Project A | Athens |
+| J2   | Project B | Paris  |
+| J3   | Project C | London |
++------+-----------+--------+
+3 rows in set (0.00 sec)
+
+
