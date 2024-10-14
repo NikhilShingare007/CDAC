@@ -1,0 +1,73 @@
+ 1) Write a query that counts all orders for October 3. 
+
+-->select count(Odate) from orders
+    -> where Odate = '1990-10-03';
++--------------+
+| count(Odate) |
++--------------+
+|            5 |
++--------------+
+1 row in set (0.01 sec)
+
+
+2) Write a query that counts the number of different non-NULL city values in the 
+Customers table. 
+
+-->select count(city) from customer
+    -> where city is not null;
++-------------+
+| count(city) |
++-------------+
+|           7 |
++-------------+
+1 row in set (0.00 sec)
+
+3) Write a query that selects each customer’s smallest order. 
+
+-->
+
+
+4) Write a query that selects the first customer, in alphabetical order, whose name 
+begins with G. 
+
+-->select cname from customer
+    -> where cname like 'G%'
+    -> order by cname
+    -> limit 1;
++----------+
+| cname    |
++----------+
+| Giovanni |
++----------+
+1 row in set (0.00 sec)
+
+5) Write a query that selects the highest rating in each city. 
+
+-->select city,max(ratings) from customer
+    -> group by city;
++----------+--------------+
+| city     | max(ratings) |
++----------+--------------+
+| London   |          100 |
+| Rome     |          200 |
+| San Jose |          300 |
+| Berlin   |          300 |
++----------+--------------+
+4 rows in set (0.00 sec)
+
+
+6) Write a query that counts the number of salespeople registering orders for each 
+day. (If a salesperson has more than one order on a given day, he or she should be 
+counted only once.). 
+
+-->select odate, count(distinct snum) from orders
+    -> group by odate;
++------------+----------------------+
+| odate      | count(distinct snum) |
++------------+----------------------+
+| 1990-10-03 |                    4 |
+| 1990-10-04 |                    2 |
+| 1990-10-05 |                    1 |
+| 1990-10-06 |                    2 |
++------------+----------------------+
+4 rows in set (0.00 sec)
